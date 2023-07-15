@@ -1,17 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-  const cookies = request.cookies
-
-  const auth = cookies.get('Auth')
-
-  if (!auth) {
-    return NextResponse.redirect(new URL('/', request.url))
-  }
-
-  return NextResponse.next()
+  return NextResponse.redirect(new URL('/login', request.url))
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*']
+  matcher: ['/explore/:path*']
 }
