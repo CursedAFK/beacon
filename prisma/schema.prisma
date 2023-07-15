@@ -8,14 +8,22 @@ datasource db {
 }
 
 model User {
-  id             String          @id @default(uuid())
-  fullName       String          @unique
-  hashedPassword String
-  occupation     String?
-  role           Role            @default(STUDENT)
-  eventsHosting  Event[]
-  eventsAttended EventAttendee[]
-  achievements   Achievement[]
+  id                     String          @id @default(uuid())
+  fullName               String          @unique
+  hashedPassword         String
+  occupation             String?
+  role                   Role            @default(STUDENT)
+  profileImage           String?
+  about                  String?
+  eventsHosting          Event[]
+  eventsAttended         EventAttendee[]
+  achievements           Achievement[]
+  sentFriendRequests     FriendRequest[] @relation(name: "sentFriendRequest")
+  receivedFriendRequests FriendRequest[] @relation(name: "receivedFriendRequest")
+  friendsWith            Friend[]        @relation(name: "friendWith")
+  friendsOf              Friend[]        @relation(name: "friendOf")
+  sentChats              Chat[]          @relation(name: "senderChat")
+  receivedChats          Chat[]          @relation(name: "receiverChat")
 }
 
 model Achievement {
@@ -43,6 +51,43 @@ model EventAttendee {
   @@id([userId, eventId])
 }
 
+model FriendRequest {
+  id         String              @id @default(uuid())
+  status     FriendRequestStatus @default(PENDING)
+  senderId   String
+  sender     User                @relation(name: "sentFriendRequest", fields: [senderId], references: [id])
+  receiverId String
+  receiver   User                @relation(name: "receivedFriendRequest", fields: [receiverId], references: [id])
+}
+
+model Friend {
+  friendWithId String
+  friendWith   User   @relation(name: "friendWith", fields: [friendWithId], references: [id])
+  friendOfId   String
+  friendOf     User   @relation(name: "friendOf", fields: [friendOfId], references: [id])
+
+  @@id([friendWithId, friendOfId])
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  content    String
+  senderId   String
+  receiverId String
+  chat       Chat     @relation(fields: [senderId, receiverId], references: [senderId, receiverId])
+}
+
+model Chat {
+  senderId   String
+  sender     User      @relation(name: "senderChat", fields: [senderId], references: [id])
+  receiverId String
+  receiver   User      @relation(name: "receiverChat", fields: [receiverId], references: [id])
+  messages   Message[]
+
+  @@id([senderId, receiverId])
+}
+
 enum AchievementType {
   MENTORSHIP
   RELATIONSHIP
@@ -52,4 +97,10 @@ enum AchievementType {
 enum Role {
   STUDENT
   MENTOR
+}
+
+enum FriendRequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
 }
