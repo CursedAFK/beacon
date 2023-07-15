@@ -8,7 +8,7 @@ type RootLayoutProps = {
 export const metadata: Metadata = {
   title: 'Beacon',
   description:
-    'We help formerly incersarated people find their light again. Let us be a part of your success journey.'
+    'We help formerly incarcerated people find their light again. Let us be a part of your success journey.'
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
