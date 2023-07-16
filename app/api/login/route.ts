@@ -1,4 +1,4 @@
-import prisma from '@/libs/prisma'
+import prisma from '@/lib/prisma'
 import UserCredentialsSchema from '@/schemas/UserCredentials.schema'
 import { compare } from 'bcrypt'
 import { SignJWT } from 'jose'
