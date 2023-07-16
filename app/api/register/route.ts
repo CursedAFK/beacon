@@ -1,43 +1,50 @@
 import prisma from '@/libs/prisma'
-import { genSalt, hash } from 'bcrypt'
+import userCredentialsSchema from '@/schemas/UserCredentials.schema'
+import { Prisma } from '@prisma/client'
+import { hash } from 'bcrypt'
 import { NextRequest, NextResponse } from 'next/server'
 
-type RequestBody = {
-  fullName: string
-  password: string
-}
-
 export async function POST(request: NextRequest) {
-  const { fullName, password }: RequestBody = await request.json()
+  const isUserCredentialsValid = userCredentialsSchema.safeParse(
+    await request.json()
+  )
 
-  if (!fullName || !password) {
-    return NextResponse.json({ message: 'Missing data' }, { status: 400 })
-  }
-
-  const saltRounds = process.env.SALT_ROUNDS
-
-  if (!saltRounds) {
+  if (!isUserCredentialsValid.success) {
     return NextResponse.json(
-      { message: 'Internal server error' },
-      { status: 500 }
+      {
+        message: 'Invalid user credentials'
+      },
+      { status: 400 }
     )
   }
 
-  const salt = await genSalt(+saltRounds)
-
-  const hashedPassword = await hash(password, salt)
+  const hashedPassword = await hash(
+    isUserCredentialsValid.data.password,
+    +process.env.SALT_ROUNDS
+  )
 
   try {
     const user = await prisma.user.create({
       data: {
-        fullName,
+        fullName: isUserCredentialsValid.data.fullName,
         hashedPassword
+      },
+      select: {
+        fullName: true,
+        role: true
       }
     })
 
     return NextResponse.json({ message: 'User created successfully', user })
   } catch (error) {
-    console.log(error)
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        return NextResponse.json(
+          { message: 'User already exists' },
+          { status: 400 }
+        )
+      }
+    }
 
     return NextResponse.json(
       { message: 'Error creating user' },
