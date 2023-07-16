@@ -2,19 +2,18 @@ import { jwtVerify } from 'jose'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-  const { searchParams } = new URL(request.url)
+  const cookieToken = request.cookies.get(process.env.TOKEN_NAME)
 
-  const token = searchParams.get(process.env.TOKEN_NAME)
-
-  if (!token) {
+  if (!cookieToken) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
   try {
     const { payload } = await jwtVerify(
-      token,
+      cookieToken.value,
       new TextEncoder().encode(process.env.JWT_SECRET)
     )
+
     return NextResponse.next()
   } catch (error) {
     return NextResponse.redirect(new URL('/login', request.url))

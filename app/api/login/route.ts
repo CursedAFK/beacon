@@ -46,7 +46,10 @@ export async function POST(request: NextRequest) {
     .sign(new TextEncoder().encode(process.env.JWT_SECRET))
 
   return NextResponse.json(
-    { message: 'Login successful', token },
+    {
+      message: 'Login successful',
+      user: { fullName, profileImage, accessToken: token }
+    },
     { headers: { 'Set-Cookie': `${process.env.TOKEN_NAME}=${token}` } }
   )
 }
