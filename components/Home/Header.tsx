@@ -10,7 +10,7 @@ type HeaderProps = {
 
 export default function Header({ isMobile }: HeaderProps) {
   return (
-    <header className='flex items-center justify-between py-3 md:py-4 px-3 md:px-0'>
+    <header className='flex items-center justify-between py-3 md:py-4 px-3 md:px-11 bg-white'>
       {isMobile ? <MobileLogo /> : <DesktopLogo />}
 
       <div className='md:flex gap-5 items-center'>

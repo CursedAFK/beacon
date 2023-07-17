@@ -7,8 +7,10 @@ export default function Home() {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
   return (
-    <div className='container mx-auto'>
+    <div>
       <Header isMobile={isMobile} />
+
+      <div></div>
     </div>
   )
 }

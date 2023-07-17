@@ -1,9 +1,16 @@
 import type { Metadata } from 'next'
+import { Poppins } from 'next/font/google'
 import './globals.css'
 
 type RootLayoutProps = {
   children: React.ReactNode
 }
+
+const poppins = Poppins({
+  weight: ['300', '400', '500', '600', '700', '800'],
+  subsets: ['latin'],
+  display: 'swap'
+})
 
 export const metadata: Metadata = {
   title: 'Beacon',
@@ -14,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <body className={`bg-[#FAF7F4] ${poppins.className}`}>{children}</body>
     </html>
   )
 }
