@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       },
       select: {
         fullName: true,
-        role: true
+        hashedPassword: true
       }
     })
 
