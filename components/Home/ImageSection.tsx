@@ -6,7 +6,7 @@ type ImageSectionProps = {
 
 export default function ImageSection({ isMobile }: ImageSectionProps) {
   return (
-    <section className='relative md:w-[35vw] h-[45vh] md:h-full'>
+    <section className='relative md:w-[38vw] h-[45vh] md:h-full'>
       <Image
         src={
           isMobile

@@ -13,7 +13,7 @@ export default function Home() {
       <Header isMobile={isMobile} />
 
       <div className='flex flex-col-reverse md:flex-row md:justify-between md:items-center md:h-full'>
-        <ContentSection />
+        <ContentSection isMobile={isMobile} />
 
         <ImageSection isMobile={isMobile} />
       </div>
