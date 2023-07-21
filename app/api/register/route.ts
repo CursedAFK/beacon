@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 
   const hashedPassword = await hash(
     isUserCredentialsValid.data.password,
-    +process.env.SALT_ROUNDS
+    +process.env.SALT_ROUNDS!
   )
 
   try {
