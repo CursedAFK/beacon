@@ -1,4 +1,3 @@
-import { AuthType } from '@/app/login/page'
 import Link from 'next/link'
 import { Button } from '../ui/button'
 
@@ -20,7 +19,7 @@ export default function ContentSection() {
             asChild
             className='border-primaryNormal border bg-primaryNormal text-xs whitespace-nowrap md:text-base py-3 md:py-5 w-32 md:w-40 text-slate-50'
           >
-            <Link href={`/login?authType=${AuthType.REGISTER}`}>
+            <Link href='/login?authType=REGISTER'>
               <p className='hidden md:block'>Join us</p>
 
               <p className='md:hidden'>Create Account</p>
@@ -32,7 +31,7 @@ export default function ContentSection() {
             variant='outline'
             className='md:hidden border-primaryNormal text-primaryNormal py-3 w-32 text-xs bg-transparent'
           >
-            <Link href={`/login?authType=${AuthType.LOGIN}`}>Log in</Link>
+            <Link href='/login?authType=LOGIN'>Log in</Link>
           </Button>
         </div>
       </div>
