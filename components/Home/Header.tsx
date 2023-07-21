@@ -13,18 +13,18 @@ export default function Header({ isMobile }: HeaderProps) {
     <header className='flex items-center justify-between py-3 md:py-4 px-3 md:px-11 bg-white shadow-sm'>
       {isMobile ? <MobileLogo /> : <DesktopLogo />}
 
-      <div className='md:flex gap-5 items-center'>
+      <div className='md:flex gap-5 items-center font-semibold'>
         <Button
           variant='outline'
           asChild
-          className='border-primaryNormal text-primaryNormal font-semibold py-5 w-40 md:inline-flex hidden'
+          className='border-primaryNormal text-primaryNormal py-5 w-40 md:inline-flex hidden'
         >
           <Link href={`/login?authType=${AuthType.LOGIN}`}>Log In</Link>
         </Button>
 
         <Button
           asChild
-          className='border-primaryNormal border bg-primaryNormal text-xs whitespace-nowrap md:text-base py-3 md:py-5 w-28 md:w-40 text-slate-50 font-semibold'
+          className='border-primaryNormal border bg-primaryNormal text-xs whitespace-nowrap md:text-base py-3 md:py-5 w-28 md:w-40 text-slate-50'
         >
           <Link href={`/login?authType=${AuthType.REGISTER}`}>
             Create Account
