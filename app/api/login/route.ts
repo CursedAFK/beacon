@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
   const token = await new SignJWT({ fullName, profileImage })
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setExpirationTime('20s')
-    .sign(new TextEncoder().encode(process.env.JWT_SECRET))
+    .sign(new TextEncoder().encode(process.env.JWT_SECRET!))
 
   return NextResponse.json({
     message: 'Login successful',
