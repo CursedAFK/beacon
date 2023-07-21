@@ -15,7 +15,14 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'Beacon',
   description:
-    'We help formerly incarcerated people find their light again. Let us be a part of your success journey.'
+    'We help formerly incarcerated people find their light again. Let us be a part of your success journey.',
+  openGraph: {
+    title: 'Beacon',
+    description:
+      'We help formerly incarcerated people find their light again. Let us be a part of your success journey.',
+    url: 'https://beacon-delta.vercel.app/',
+    images: ['/images/screenshot.png']
+  }
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
