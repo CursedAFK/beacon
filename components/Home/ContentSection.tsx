@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import { Button } from '../ui/button'
+import Eclipse from './Eclipse'
 
 export default function ContentSection() {
   return (
     <section className='md:pl-48 pt-5 md:pt-0 px-6 md:px-0'>
-      <div className='max-w-lg space-y-5'>
+      <div className='relative max-w-lg space-y-5'>
         <h2 className='text-3xl md:text-5xl md:leading-[4rem] font-semibold text-primaryDark'>
           Get Help and insight from mentors on Beacon.
         </h2>
@@ -13,6 +14,8 @@ export default function ContentSection() {
           We help formerly incarcerated people find their light again. Let us be
           a part of your success journey.
         </p>
+
+        <Eclipse />
 
         <div className='font-semibold flex items-center gap-4 md:block'>
           <Button
