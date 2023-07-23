@@ -1,7 +1,7 @@
 'use client'
 
-import FormSection from '@/components/Login/FormSection'
-import HeroSection from '@/components/Login/HeroSection'
+import FormSection from '@/components/Auth/FormSection'
+import HeroSection from '@/components/Auth/HeroSection'
 import DesktopLogo from '@/components/Logo/DesktopLogo'
 import MobileLogo from '@/components/Logo/MobileLogo'
 import useResponsive from '@/utils/useResponsive'
