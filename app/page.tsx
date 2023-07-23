@@ -3,10 +3,10 @@
 import ContentSection from '@/components/Home/ContentSection'
 import Header from '@/components/Home/Header'
 import ImageSection from '@/components/Home/ImageSection'
-import { useMediaQuery } from 'react-responsive'
+import useResponsive from '@/utils/useResponsive'
 
 export default function Home() {
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+  const isMobile = useResponsive()
 
   return (
     <div className='md:h-screen'>

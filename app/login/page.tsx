@@ -1,3 +1,25 @@
+'use client'
+
+import FormSection from '@/components/Login/FormSection'
+import HeroSection from '@/components/Login/HeroSection'
+import DesktopLogo from '@/components/Logo/DesktopLogo'
+import MobileLogo from '@/components/Logo/MobileLogo'
+import useResponsive from '@/utils/useResponsive'
+
 export default function Login() {
-  return <div>Login</div>
+  const isMobile = useResponsive()
+
+  return (
+    <div className='md:px-48'>
+      <header className='md:pt-12 px-5 md:px-0 pt-6 pb-6 md:pb-0'>
+        {isMobile ? <MobileLogo /> : <DesktopLogo />}
+      </header>
+
+      <div className='flex flex-col-reverse md:flex-row items-center md:justify-between md:pt-14'>
+        <FormSection />
+
+        <HeroSection />
+      </div>
+    </div>
+  )
 }
