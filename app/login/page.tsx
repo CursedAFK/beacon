@@ -11,7 +11,11 @@ export default function Login() {
 
   return (
     <div className='md:px-48'>
-      <header className='md:pt-12 px-5 md:px-0 pt-6 pb-6 md:pb-0'>
+      <header
+        className={`md:pt-12 px-5 md:px-0 pt-6 pb-6 md:pb-0 ${
+          isMobile ? 'bg-white shadow-sm' : ''
+        }`}
+      >
         {isMobile ? <MobileLogo /> : <DesktopLogo />}
       </header>
 
