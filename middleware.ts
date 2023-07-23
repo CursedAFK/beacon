@@ -5,7 +5,7 @@ export async function middleware(request: NextRequest) {
   const cookieToken = request.cookies.get(process.env.TOKEN_NAME!)
 
   if (!cookieToken) {
-    return NextResponse.redirect(new URL('/login?authType=LOGIN', request.url))
+    return NextResponse.redirect(new URL('/auth', request.url))
   }
 
   try {
@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
 
     return NextResponse.next()
   } catch (error) {
-    return NextResponse.redirect(new URL('/login?authType=LOGIN', request.url))
+    return NextResponse.redirect(new URL('/auth', request.url))
   }
 }
 

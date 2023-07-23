@@ -1,11 +1,11 @@
 import prisma from '@/lib/prisma'
-import userCredentialsSchema from '@/schemas/UserCredentials.schema'
+import UserRegisterCredentialsSchema from '@/schemas/UserRegisterCredentials.schema'
 import { Prisma } from '@prisma/client'
 import { hash } from 'bcrypt'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
-  const isUserCredentialsValid = userCredentialsSchema.safeParse(
+  const isUserCredentialsValid = UserRegisterCredentialsSchema.safeParse(
     await request.json()
   )
 
