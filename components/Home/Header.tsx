@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import DesktopLogo from '../Logo/DesktopLogo'
-import MobileLogo from '../Logo/MobileLogo'
+import DesktopLogo from '../Icons/DesktopLogo'
+import MobileLogo from '../Icons/MobileLogo'
 import { Button } from '../ui/button'
 
 type HeaderProps = {
