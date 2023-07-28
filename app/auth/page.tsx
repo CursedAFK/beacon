@@ -12,7 +12,7 @@ const Auth = () => {
         <DesktopLogo className='hidden md:block' />
       </header>
 
-      <div className='flex flex-col-reverse md:flex-row md:justify-between md:pt-14 md:pb-36'>
+      <div className='flex flex-col-reverse md:flex-row md:justify-between md:pt-14 pb-16 md:pb-36'>
         <FormSection />
 
         <HeroSection />
