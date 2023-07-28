@@ -30,8 +30,7 @@ export const POST = async (request: NextRequest) => {
         hashedPassword
       },
       select: {
-        fullName: true,
-        hashedPassword: true
+        fullName: true
       }
     })
 

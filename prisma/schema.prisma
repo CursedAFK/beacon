@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
@@ -31,6 +32,8 @@ model Achievement {
   type       AchievementType
   userId     String
   receivedBy User            @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
 
 model Event {
@@ -40,6 +43,8 @@ model Event {
   host       User            @relation(fields: [hostId], references: [id])
   eventDate  DateTime
   attendants EventAttendee[]
+
+  @@index([hostId])
 }
 
 model EventAttendee {
@@ -49,6 +54,8 @@ model EventAttendee {
   event   Event  @relation(fields: [eventId], references: [id])
 
   @@id([userId, eventId])
+  @@index([userId])
+  @@index([eventId])
 }
 
 model FriendRequest {
@@ -58,6 +65,9 @@ model FriendRequest {
   sender     User                @relation(name: "sentFriendRequest", fields: [senderId], references: [id])
   receiverId String
   receiver   User                @relation(name: "receivedFriendRequest", fields: [receiverId], references: [id])
+
+  @@index([senderId])
+  @@index([receiverId])
 }
 
 model Friend {
@@ -67,6 +77,8 @@ model Friend {
   friendOf     User   @relation(name: "friendOf", fields: [friendOfId], references: [id])
 
   @@id([friendWithId, friendOfId])
+  @@index([friendWithId])
+  @@index([friendOfId])
 }
 
 model Message {
@@ -76,6 +88,8 @@ model Message {
   senderId   String
   receiverId String
   chat       Chat     @relation(fields: [senderId, receiverId], references: [senderId, receiverId])
+
+  @@index([senderId, receiverId])
 }
 
 model Chat {
@@ -86,6 +100,8 @@ model Chat {
   messages   Message[]
 
   @@id([senderId, receiverId])
+  @@index([senderId])
+  @@index([receiverId])
 }
 
 enum AchievementType {

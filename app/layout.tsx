@@ -1,10 +1,8 @@
+import ReactToastify from '@/components/Providers/ReactToastify'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import { PropsWithChildren } from 'react'
 import './globals.css'
-
-type RootLayoutProps = {
-  children: React.ReactNode
-}
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -25,10 +23,12 @@ export const metadata: Metadata = {
   }
 }
 
-const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
+const RootLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <html lang='en'>
-      <body className={`bg-[#FAF7F4] ${poppins.className}`}>{children}</body>
+      <body className={`bg-[#FAF7F4] ${poppins.className}`}>
+        <ReactToastify>{children}</ReactToastify>
+      </body>
     </html>
   )
 }

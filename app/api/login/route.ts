@@ -38,15 +38,15 @@ export const POST = async (request: NextRequest) => {
     )
   }
 
-  const { fullName, profileImage } = user
+  const { fullName } = user
 
-  const token = await new SignJWT({ fullName, profileImage })
+  const token = await new SignJWT({ fullName })
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
-    .setExpirationTime('20s')
+    .setExpirationTime('60s')
     .sign(new TextEncoder().encode(process.env.JWT_SECRET!))
 
   return NextResponse.json({
     message: 'Login successful',
-    user: { fullName, profileImage, accessToken: token }
+    user: { fullName, accessToken: token }
   })
 }
