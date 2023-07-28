@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function HeroSection() {
+const HeroSection = () => {
   return (
     <section className='md:w-[45%] pt-10 md:pt-0 relative'>
       <div className='relative md:px-12 md:py-6 md:w-full md:h-96 w-36 h-36'>
@@ -23,3 +23,5 @@ export default function HeroSection() {
     </section>
   )
 }
+
+export default HeroSection

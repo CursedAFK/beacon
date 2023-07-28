@@ -4,7 +4,7 @@ import { compare } from 'bcrypt'
 import { SignJWT } from 'jose'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function POST(request: NextRequest) {
+export const POST = async (request: NextRequest) => {
   const isUserCredentialsValid = UserLoginCredentialsSchema.safeParse(
     await request.json()
   )

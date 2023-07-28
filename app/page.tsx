@@ -5,7 +5,7 @@ import Header from '@/components/Home/Header'
 import ImageSection from '@/components/Home/ImageSection'
 import useResponsive from '@/utils/useResponsive'
 
-export default function Home() {
+const Home = () => {
   const isMobile = useResponsive()
 
   return (
@@ -20,3 +20,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home

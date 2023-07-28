@@ -1,7 +1,7 @@
 import { jwtVerify } from 'jose'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function middleware(request: NextRequest) {
+export const middleware = async (request: NextRequest) => {
   const cookieToken = request.cookies.get(process.env.TOKEN_NAME!)
 
   if (!cookieToken) {

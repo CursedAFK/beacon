@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Button } from '../ui/button'
 import Eclipse from './Eclipse'
 
-export default function ContentSection() {
+const ContentSection = () => {
   return (
     <section className='md:pl-48 pt-5 md:pt-0 px-6 md:px-0'>
       <div className='relative max-w-lg space-y-5'>
@@ -41,3 +41,5 @@ export default function ContentSection() {
     </section>
   )
 }
+
+export default ContentSection

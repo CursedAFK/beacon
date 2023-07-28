@@ -23,7 +23,7 @@ type UserLoginCredentials = z.infer<typeof UserLoginCredentialsSchema>
 
 type UserRegisterCredentials = z.infer<typeof UserRegisterCredentialsSchema>
 
-export default function FormSection() {
+const FormSection = () => {
   const [authState, setAuthState] = useState<AuthState>('register')
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
@@ -35,9 +35,9 @@ export default function FormSection() {
     )
   })
 
-  async function onSubmit(
+  const onSubmit = async (
     data: UserLoginCredentials | UserRegisterCredentials
-  ) {}
+  ) => {}
 
   return (
     <section className='md:w-[45%] md:p-10 rounded-lg bg-white md:space-y-7 md:h-[40rem]'>
@@ -48,38 +48,67 @@ export default function FormSection() {
           <FormField
             control={form.control}
             name='fullName'
-            render={function ({ field }) {
-              return (
-                <FormItem>
-                  <FormLabel hidden>Full Name</FormLabel>
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel hidden>Full Name</FormLabel>
 
-                  <FormControl>
-                    <Input
-                      type='text'
-                      placeholder='Full Name'
-                      {...field}
-                      className='md:text-base md:py-4 md:px-5 rounded-lg'
-                    />
-                  </FormControl>
+                <FormControl>
+                  <Input
+                    type='text'
+                    placeholder='Full Name'
+                    {...field}
+                    className='md:text-base md:py-4 md:px-5 rounded-lg'
+                  />
+                </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )
-            }}
+                <FormMessage />
+              </FormItem>
+            )}
           />
 
           <FormField
             control={form.control}
             name='password'
-            render={function ({ field }) {
-              return (
+            render={({ field }) => (
+              <FormItem className='relative'>
+                <FormLabel hidden>Password</FormLabel>
+
+                <FormControl>
+                  <Input
+                    type={isPasswordVisible ? 'text' : 'password'}
+                    placeholder='Password'
+                    {...field}
+                    className='md:text-base md:py-4 md:pl-5 md:pr-14 rounded-lg'
+                  />
+                </FormControl>
+
+                {!isPasswordVisible ? (
+                  <EyeOutline
+                    className='absolute top-0 md:right-4 cursor-pointer hover:brightness-50 transition'
+                    setIsPasswordVisible={setIsPasswordVisible}
+                  />
+                ) : (
+                  <EyeOutlineCrossed
+                    className='absolute top-0 md:right-4 cursor-pointer hover:brightness-50 transition'
+                    setIsPasswordVisible={setIsPasswordVisible}
+                  />
+                )}
+              </FormItem>
+            )}
+          />
+
+          {authState === 'register' && (
+            <FormField
+              control={form.control}
+              name='confirmPassword'
+              render={({ field }) => (
                 <FormItem className='relative'>
-                  <FormLabel hidden>Password</FormLabel>
+                  <FormLabel hidden>Confirm Password</FormLabel>
 
                   <FormControl>
                     <Input
                       type={isPasswordVisible ? 'text' : 'password'}
-                      placeholder='Password'
+                      placeholder='Confirm Password'
                       {...field}
                       className='md:text-base md:py-4 md:pl-5 md:pr-14 rounded-lg'
                     />
@@ -97,42 +126,7 @@ export default function FormSection() {
                     />
                   )}
                 </FormItem>
-              )
-            }}
-          />
-
-          {authState === 'register' && (
-            <FormField
-              control={form.control}
-              name='confirmPassword'
-              render={function ({ field }) {
-                return (
-                  <FormItem className='relative'>
-                    <FormLabel hidden>Confirm Password</FormLabel>
-
-                    <FormControl>
-                      <Input
-                        type={isPasswordVisible ? 'text' : 'password'}
-                        placeholder='Confirm Password'
-                        {...field}
-                        className='md:text-base md:py-4 md:pl-5 md:pr-14 rounded-lg'
-                      />
-                    </FormControl>
-
-                    {!isPasswordVisible ? (
-                      <EyeOutline
-                        className='absolute top-0 md:right-4 cursor-pointer hover:brightness-50 transition'
-                        setIsPasswordVisible={setIsPasswordVisible}
-                      />
-                    ) : (
-                      <EyeOutlineCrossed
-                        className='absolute top-0 md:right-4 cursor-pointer hover:brightness-50 transition'
-                        setIsPasswordVisible={setIsPasswordVisible}
-                      />
-                    )}
-                  </FormItem>
-                )
-              }}
+              )}
             />
           )}
 
@@ -152,9 +146,7 @@ export default function FormSection() {
           Don&apos;t have an account?{' '}
           <span
             className='font-semibold cursor-pointer hover:underline active:underline'
-            onClick={function () {
-              setAuthState('register')
-            }}
+            onClick={() => setAuthState('register')}
           >
             Create one
           </span>
@@ -164,9 +156,7 @@ export default function FormSection() {
           Already have an account?{' '}
           <span
             className='font-semibold cursor-pointer hover:underline active:underline'
-            onClick={function () {
-              setAuthState('login')
-            }}
+            onClick={() => setAuthState('login')}
           >
             Log in
           </span>
@@ -175,3 +165,5 @@ export default function FormSection() {
     </section>
   )
 }
+
+export default FormSection

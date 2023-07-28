@@ -25,10 +25,12 @@ export const metadata: Metadata = {
   }
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang='en'>
       <body className={`bg-[#FAF7F4] ${poppins.className}`}>{children}</body>
     </html>
   )
 }
+
+export default RootLayout

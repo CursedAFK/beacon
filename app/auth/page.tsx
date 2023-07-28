@@ -6,7 +6,7 @@ import DesktopLogo from '@/components/Icons/DesktopLogo'
 import MobileLogo from '@/components/Icons/MobileLogo'
 import useResponsive from '@/utils/useResponsive'
 
-export default function Auth() {
+const Auth = () => {
   const isMobile = useResponsive()
 
   return (
@@ -27,3 +27,5 @@ export default function Auth() {
     </div>
   )
 }
+
+export default Auth

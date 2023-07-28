@@ -7,7 +7,7 @@ type HeaderProps = {
   isMobile: boolean
 }
 
-export default function Header({ isMobile }: HeaderProps) {
+const Header: React.FC<HeaderProps> = ({ isMobile }) => {
   return (
     <header className='flex items-center justify-between py-3 md:py-4 px-3 md:px-11 bg-white shadow-sm'>
       {isMobile ? <MobileLogo /> : <DesktopLogo />}
@@ -31,3 +31,5 @@ export default function Header({ isMobile }: HeaderProps) {
     </header>
   )
 }
+
+export default Header
