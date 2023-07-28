@@ -1,3 +1,5 @@
+'use client'
+
 import UserLoginCredentialsSchema from '@/schemas/UserLoginCredentials.schema'
 import UserRegisterCredentialsSchema from '@/schemas/UserRegisterCredentials.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -41,7 +43,11 @@ const FormSection = () => {
 
   return (
     <section className='md:w-[45%] md:p-10 rounded-lg bg-white md:space-y-7 md:h-[40rem]'>
-      <p className='md:text-2xl'>Create your Beacon account</p>
+      <p className='md:text-2xl'>
+        {authState === 'login'
+          ? 'Login to your Beacon account'
+          : 'Create your Beacon account'}
+      </p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='md:space-y-4'>

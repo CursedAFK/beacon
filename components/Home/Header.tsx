@@ -3,14 +3,12 @@ import DesktopLogo from '../Icons/DesktopLogo'
 import MobileLogo from '../Icons/MobileLogo'
 import { Button } from '../ui/button'
 
-type HeaderProps = {
-  isMobile: boolean
-}
-
-const Header: React.FC<HeaderProps> = ({ isMobile }) => {
+const Header = () => {
   return (
     <header className='flex items-center justify-between py-3 md:py-4 px-3 md:px-11 bg-white shadow-sm'>
-      {isMobile ? <MobileLogo /> : <DesktopLogo />}
+      <MobileLogo className='md:hidden' />
+
+      <DesktopLogo className='hidden md:block' />
 
       <div className='md:flex gap-5 items-center font-semibold'>
         <Button
