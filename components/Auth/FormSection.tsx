@@ -42,15 +42,18 @@ const FormSection = () => {
   ) => {}
 
   return (
-    <section className='md:w-[45%] md:p-10 rounded-lg bg-white md:space-y-7 md:h-[40rem]'>
-      <p className='md:text-2xl'>
+    <section className='md:w-[45%] p-7 md:p-10 rounded-lg bg-white space-y-5 md:space-y-7 md:h-[40rem] mt-2 md:mt-0 mx-6 md:mx-0'>
+      <p className='md:text-2xl text-base'>
         {authState === 'login'
           ? 'Login to your Beacon account'
           : 'Create your Beacon account'}
       </p>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='md:space-y-4'>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className='md:space-y-4 space-y-3'
+        >
           <FormField
             control={form.control}
             name='fullName'
@@ -63,7 +66,7 @@ const FormSection = () => {
                     type='text'
                     placeholder='Full Name'
                     {...field}
-                    className='md:text-base md:py-4 md:px-5 rounded-lg'
+                    className='md:text-base text-xs py-3 md:py-4 px-4 md:px-5 rounded-lg'
                   />
                 </FormControl>
 
@@ -84,18 +87,18 @@ const FormSection = () => {
                     type={isPasswordVisible ? 'text' : 'password'}
                     placeholder='Password'
                     {...field}
-                    className='md:text-base md:py-4 md:pl-5 md:pr-14 rounded-lg'
+                    className='md:text-base text-xs py-3 md:py-4 pl-4 md:pl-5 pr-12 md:pr-14 rounded-lg'
                   />
                 </FormControl>
 
                 {!isPasswordVisible ? (
                   <EyeOutline
-                    className='absolute top-0 md:right-4 cursor-pointer hover:brightness-50 transition'
+                    className='absolute top-0 right-3 md:right-4 cursor-pointer hover:brightness-50 transition'
                     setIsPasswordVisible={setIsPasswordVisible}
                   />
                 ) : (
                   <EyeOutlineCrossed
-                    className='absolute top-0 md:right-4 cursor-pointer hover:brightness-50 transition'
+                    className='absolute top-0 right-3 md:right-4 cursor-pointer hover:brightness-50 transition'
                     setIsPasswordVisible={setIsPasswordVisible}
                   />
                 )}
@@ -116,18 +119,18 @@ const FormSection = () => {
                       type={isPasswordVisible ? 'text' : 'password'}
                       placeholder='Confirm Password'
                       {...field}
-                      className='md:text-base md:py-4 md:pl-5 md:pr-14 rounded-lg'
+                      className='md:text-base text-xs py-3 md:py-4 pl-4 md:pl-5 pr-12 md:pr-14 rounded-lg'
                     />
                   </FormControl>
 
                   {!isPasswordVisible ? (
                     <EyeOutline
-                      className='absolute top-0 md:right-4 cursor-pointer hover:brightness-50 transition'
+                      className='absolute top-0 right-3 md:right-4 cursor-pointer hover:brightness-50 transition'
                       setIsPasswordVisible={setIsPasswordVisible}
                     />
                   ) : (
                     <EyeOutlineCrossed
-                      className='absolute top-0 md:right-4 cursor-pointer hover:brightness-50 transition'
+                      className='absolute top-0 right-3 md:right-4 cursor-pointer hover:brightness-50 transition'
                       setIsPasswordVisible={setIsPasswordVisible}
                     />
                   )}
@@ -139,7 +142,7 @@ const FormSection = () => {
           <div>
             <Button
               type='submit'
-              className='md:w-full md:py-5 rounded-lg md:mt-3 md:text-base font-semibold border bg-[#60007D]'
+              className='w-full py-4 md:py-5 rounded-lg mt-2 md:mt-3 text-xs md:text-base font-semibold border bg-[#60007D]'
             >
               {authState === 'login' ? 'Login' : 'Create Account'}
             </Button>
@@ -148,7 +151,7 @@ const FormSection = () => {
       </Form>
 
       {authState === 'login' ? (
-        <p className='text-[#756D79] md:text-xs'>
+        <p className='text-[#756D79] text-[0.6rem] md:text-xs'>
           Don&apos;t have an account?{' '}
           <span
             className='font-semibold cursor-pointer hover:underline active:underline'
@@ -158,7 +161,7 @@ const FormSection = () => {
           </span>
         </p>
       ) : (
-        <p className='text-[#756D79] md:text-xs'>
+        <p className='text-[#756D79] text-[0.6rem] md:text-xs'>
           Already have an account?{' '}
           <span
             className='font-semibold cursor-pointer hover:underline active:underline'
