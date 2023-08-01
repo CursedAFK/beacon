@@ -1,5 +1,6 @@
 'use client'
 
+import Header from '@/components/Explore/Header'
 import useGlobalStore from '@/contexts/store'
 import { User } from '@prisma/client'
 import Cookies from 'js-cookie'
@@ -37,7 +38,14 @@ const RestrictedLayout: React.FC<PropsWithChildren> = ({ children }) => {
 
   if (isLoading) return <p>Loading...</p>
 
-  return <>{children}</>
+  if (!user) return <p>User not found</p>
+
+  return (
+    <>
+      <Header user={user} />
+      {children}
+    </>
+  )
 }
 
 export default RestrictedLayout
