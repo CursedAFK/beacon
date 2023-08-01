@@ -24,6 +24,7 @@
     "clsx": "^2.0.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.10",
+    "immer": "^10.0.2",
     "jose": "^4.14.4",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.260.0",
