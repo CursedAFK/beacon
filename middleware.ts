@@ -34,7 +34,7 @@ export const middleware = async (request: NextRequest) => {
 
       return NextResponse.redirect(new URL('/explore', request.url))
     } catch (error) {
-      return NextResponse.redirect(new URL('/auth', request.url))
+      return NextResponse.next()
     }
   }
 }

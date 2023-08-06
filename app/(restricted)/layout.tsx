@@ -5,12 +5,16 @@ import useGlobalStore from '@/contexts/store'
 import { User } from '@prisma/client'
 import Cookies from 'js-cookie'
 import { PropsWithChildren, useCallback, useEffect, useState } from 'react'
+import { shallow } from 'zustand/shallow'
 
 const RestrictedLayout: React.FC<PropsWithChildren> = ({ children }) => {
   const [fullName, setFullName] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
-  const [user, addUser] = useGlobalStore(store => [store.user, store.addUser])
+  const [user, addUser] = useGlobalStore(
+    store => [store.user, store.addUser],
+    shallow
+  )
 
   const getUser = useCallback(
     async (fullName: string) => {
